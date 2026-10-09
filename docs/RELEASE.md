@@ -3,7 +3,7 @@
 1. Update `CHANGELOG.md` and the app version in `Resources/Info.plist`.
 2. Run `swift build`, `swift run QuickTabChecks`, `swift test`, and `./package-dmg.sh`.
 3. Verify the DMG, app signature, bundle ID, deployment target, and SHA-256.
-4. Commit to `main` and create a tag such as `v1.0.0`.
+4. Commit to `main` and create a tag such as `v1.0.0`. Release tags are maintainer-only; contributors submit changes through pull requests.
 5. The release workflow builds the DMG and publishes it with a checksum.
 
 The default workflow uses ad-hoc signing when Developer ID secrets are absent. Such releases are for testing and internal use only. Public distribution should provide a Developer ID identity, hardened runtime, notarize with `xcrun notarytool`, staple the ticket, and verify again.

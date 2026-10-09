@@ -18,7 +18,14 @@ On a Command Line Tools-only installation, `swift test` may fail because XCTest 
 
 ## Workflow
 
-Use `feature/<short-name>` for features and `fix/<short-name>` for bug fixes. Keep `main` buildable. Explain the user problem, behavior change, tests run, and macOS permissions needed in the pull request.
+QuickTab uses the fork-based workflow:
+
+1. Fork the repository and create a branch from `main`.
+2. Use `feature/<short-name>`, `fix/<short-name>`, `docs/<short-name>`, or `chore/<short-name>`.
+3. Make focused commits and open a pull request into `main`.
+4. Wait for CI and maintainer review before merging.
+
+Use Conventional Commit prefixes such as `feat:`, `fix:`, `docs:`, `test:`, `chore:`, and `ci:`. Keep `main` buildable. Explain the user problem, behavior change, tests run, and macOS permissions needed in the pull request.
 
 Before opening a PR:
 
@@ -35,3 +42,5 @@ Keep event-tap callbacks short and free of AX queries, image capture, or blockin
 ## Issues and reviews
 
 Search existing issues first. Bug reports should include QuickTab version, macOS build, architecture, installation source, permission status, reproduction steps, expected/actual behavior, and logs or screenshots. Permission and signing failures belong in the dedicated TCC issue template.
+
+External contributors do not need write access: fork the repository and submit a pull request. Maintainers review changes, squash-merge focused contributions, and update `CHANGELOG.md` for user-visible behavior. Only maintainers create release tags (`vX.Y.Z`) and GitHub Releases.

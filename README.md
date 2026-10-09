@@ -190,3 +190,7 @@ QuickTab is MIT-licensed and welcomes focused pull requests. See [CONTRIBUTING.m
 The app bundle includes the QuickTab two-window blue icon (`Resources/AppIcon.icns`), so no separate icon installation is needed. The menu bar uses the same asset as a monochrome template.
 
 GitHub Actions validates pull requests and `main`. A `vX.Y.Z` tag builds a DMG and publishes it with a SHA-256 checksum. CI cannot grant macOS TCC permissions, so global keyboard and real window activation still require manual testing on a permitted machine.
+
+### Contributing
+
+Fork the repository, create a `feature/<short-name>` or `fix/<short-name>` branch from `main`, run the checks, and open a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) for the review checklist, issue templates, and permission requirements. Questions and early ideas belong in [Discussions](https://github.com/haidb99/macos-quicktab/discussions); security issues should use [private security advisories](https://github.com/haidb99/macos-quicktab/security/advisories/new).
