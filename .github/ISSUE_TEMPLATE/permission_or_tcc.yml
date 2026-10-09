@@ -1,0 +1,27 @@
+name: Permission or TCC issue
+description: Report Accessibility, event tap, Screen Recording, signing, or Gatekeeper behavior
+title: "[Permissions]: "
+body:
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version and build
+    validations:
+      required: true
+  - type: textarea
+    id: status
+    attributes:
+      label: Permission status and diagnostics output
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+    validations:
+      required: true
+  - type: textarea
+    id: signing
+    attributes:
+      label: Install path, signing identity, and source
+      description: Do not paste certificates, passwords, or private files.

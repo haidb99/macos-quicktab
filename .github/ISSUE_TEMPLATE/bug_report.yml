@@ -1,0 +1,64 @@
+name: Bug report
+description: Report a reproducible QuickTab problem
+title: "[Bug]: "
+body:
+  - type: input
+    id: version
+    attributes:
+      label: QuickTab version
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version and build
+    validations:
+      required: true
+  - type: dropdown
+    id: architecture
+    attributes:
+      label: Architecture
+      options:
+        - Apple Silicon
+        - Intel
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: Installation source
+      options:
+        - GitHub DMG
+        - Built from source
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: permissions
+    attributes:
+      label: Permission status
+      description: Accessibility, Screen Recording, and Input Monitoring status.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs, screenshots, or video
+  - type: checkboxes
+    id: thumbnails
+    attributes:
+      label: Thumbnail behavior
+      options:
+        - label: The issue also happens with thumbnails disabled.

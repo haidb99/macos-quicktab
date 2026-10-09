@@ -1,0 +1,10 @@
+.build/
+.swiftpm/
+dist/
+.build-*/
+*.p12
+*.cer
+*.mobileprovision
+.DS_Store
+/.codegraph
+/.vscode

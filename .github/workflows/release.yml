@@ -1,0 +1,56 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Select Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      - name: Validate tag
+        id: version
+        shell: bash
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: Build and package DMG
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          CONFIGURATION: release
+          SIGNING_IDENTITY: ${{ secrets.SIGNING_IDENTITY }}
+        run: ./package-dmg.sh
+      - name: Validate release artifact
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          dmg="dist/QuickTab-${VERSION}.dmg"
+          test -f "$dmg"
+          hdiutil verify "$dmg"
+          codesign --verify --strict --verbose=2 dist/QuickTab.app
+          plutil -lint dist/QuickTab.app/Contents/Info.plist
+          test "$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' dist/QuickTab.app/Contents/Info.plist)" = "com.local.quicktab"
+          shasum -a 256 "$dmg" > "$dmg.sha256"
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          body: |
+            Community release. macOS 14+.
+
+            Signing/notarization status depends on the configured release secrets. If no Developer ID secrets are configured, this artifact is ad-hoc signed for internal/testing use.
+          files: |
+            dist/QuickTab-${{ steps.version.outputs.version }}.dmg
+            dist/QuickTab-${{ steps.version.outputs.version }}.dmg.sha256
