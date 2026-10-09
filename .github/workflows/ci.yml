@@ -16,7 +16,7 @@ jobs:
       - name: Select Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest-stable
+          xcode-version: '16.3'
       - name: Cache SwiftPM
         uses: actions/cache@v6
         with:
@@ -32,6 +32,7 @@ jobs:
       - name: Validate scripts and metadata
         run: |
           bash -n build.sh run.sh package-dmg.sh
+          ruby -e 'require "yaml"; ARGV.each { |path| YAML.load_file(path, aliases: true); puts "Valid YAML: #{path}" }' .github/workflows/*.yml .github/ISSUE_TEMPLATE/*.yml
           plutil -lint Resources/Info.plist
           test "$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' Resources/Info.plist)" = "com.local.quicktab"
           git diff --check

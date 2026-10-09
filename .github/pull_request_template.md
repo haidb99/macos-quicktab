@@ -23,3 +23,4 @@ List whether Accessibility, Screen Recording, or Input Monitoring was needed.
 - [ ] Documentation updated
 - [ ] Changelog updated for user-visible behavior
 - [ ] Screenshots/video attached for UI changes
+- [ ] Commits are signed off with `git commit -s` when contributing under the DCO
