@@ -1,8 +1,15 @@
 # QuickTab
 
+[![CI](https://github.com/haidb99/macos-quicktab/actions/workflows/ci.yml/badge.svg)](https://github.com/haidb99/macos-quicktab/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 QuickTab is an open-source macOS window switcher for people who work across many windows. It runs in the menu bar and uses public Accessibility, AppKit, SwiftUI, Core Graphics, and ScreenCaptureKit APIs.
 
 ![QuickTab overlay](docs/images/overlay.png)
+
+The Settings window provides live shortcut, thumbnail, layout, animation, and Launch at Login controls:
+
+![QuickTab settings](docs/images/settings.png)
 
 ## Features
 
@@ -26,6 +33,10 @@ QuickTab is an open-source macOS window switcher for people who work across many
 Download the latest DMG from [Releases](https://github.com/haidb99/macos-quicktab/releases), open it, and drag `QuickTab.app` to `Applications`. Launch `/Applications/QuickTab.app`, then grant Accessibility in System Settings → Privacy & Security. Remove the app by dragging it from Applications to Trash.
 
 Releases without Developer ID signing or notarization are for local testing and community use. macOS may require permissions again after an ad-hoc rebuild.
+
+## Permissions
+
+QuickTab asks for permissions only when you open Settings or enable the related feature. Accessibility is required for the window list, activation, and global shortcut. Screen Recording is required only for thumbnails; the switcher still works with thumbnails disabled. Input Monitoring can be required by macOS for keyboard events. Grant permissions to the exact app bundle you launch, usually `/Applications/QuickTab.app`.
 
 ## Build from source
 
